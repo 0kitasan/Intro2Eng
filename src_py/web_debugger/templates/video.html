@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video and Parameters</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            justify-content: space-between;
+        }
+
+        .video-container {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            border: 1px solid black;
+            /* 为了可视化，添加了边框 */
+        }
+
+        .parameters-container {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid black;
+            /* 为了可视化，添加了边框 */
+            border-left: 1px solid #ddd;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="video-container">
+            <img src="{{ url_for('video_feed') }}" alt="Video Feed">
+        </div>
+        <div class="parameters-container">
+            <!-- 这里是其他参数的显示区域 -->
+            <h2>Other Parameters</h2>
+            <p>Parameter 1: Value 1</p>
+            <p>Parameter 2: Value 2</p>
+            <!-- 在这里添加其他参数 -->
+        </div>
+    </div>
+</body>
+
+</html>
