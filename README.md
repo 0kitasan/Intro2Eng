@@ -31,7 +31,7 @@ ffmpeg -i input.mp4 -vf "setpts=0.5*PTS" -filter:a "atempo=2.0" output.mp4
 尽管我压缩了分辨率，但是文件还是非常的大，因此，使用`ffmpeg`又压缩了一遍，指令如下：
 
 ``` bash
-ffmpeg -i output2.mp4 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
+ffmpeg -i input.mp4 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
 ```
 这样文件大小不仅减小了，视频也能兼容所有多媒体播放器了（本来只有比较强的可以打开）。并且，经过测试，压缩2被分辨率对于模型的识别结果无显著影响。
 
@@ -83,5 +83,6 @@ https://github.com/omaraflak/HC-SR04-Raspberry-Pi-C-
 | 4/12 | 完成人脸识别py代码的demo                                                                           |
 | 4/28 | 新增cam版本以及控制代码demo                                                                        |
 | 5/10 | 超声波测距代码：arduino的可以用，<br />但是发现香橙派上的用py写的死活不对                          |
-| 5/13 | debug+完成了超声波测距相关代码，结果貌似比arduino的更准确；<br />也许以后控制代码需要全部转为c++了 |
-| 5/14 | 调整了demo视频的分辨率，否则项目仓库过大；<br />由于.git占了近300MB，于是新开了一个仓库；web_debugger初步构建完成 |
+| 5/13 | debug并完成了超声波测距相关代码，结果貌似比arduino的更准确；<br />也许以后控制代码需要全部转为c++了 |
+| 5/14 | 调整了demo视频的分辨率，否则项目仓库过大；<br />由于.git占了近300MB，于是新开了一个仓库；<br />web_debugger初步构建完成 |
+| 5/15 | 使用ffmpeg修正了demo视频无法播放和文件过大的问题；<br />经测试，由于在小电脑上延迟过大，可能需要将人脸识别模块改写为c++ |

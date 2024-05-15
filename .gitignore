@@ -50,4 +50,4 @@ vendor/
 
 __pycache__/
 
-#*.mp4
+*.mp4
