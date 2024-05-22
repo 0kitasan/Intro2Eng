@@ -1,0 +1,15 @@
+Path:
+    model:
+        bin: assets/model/face_detector/opencv_face_detector_uint8.pb
+        text: assets/model/face_detector/opencv_face_detector.pbtxt
+    video:
+        1: assets/test1.mp4
+        2: assets/test2.mp4
+    output:
+        1: assets/output1.mp4
+        2: assets/output2.mp4
+
+CamIndex:
+    default: 0
+    zero2: "/dev/video0"
+    3b: "/dev/video1"

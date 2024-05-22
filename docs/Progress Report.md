@@ -35,14 +35,16 @@
 </details>
 
 ## 未来计划
- 
+
 * 上周采购的铜线到了，可以焊接了
+
 <details>
   <summary>Click to view the image</summary>
-  <img src="https://github.com/0kitasan/demo/assets/62045828/4abc4437-9818-4a01-b374-e7ce8504ef3f" alt="Demo Image" width="400">
+  <img src="https://github.com/0kitasan/demo/assets/62045828/624e773f-6b15-404c-88b5-6a379b60f1f3" alt="Demo Image" width="400">
 </details>
 
 * 上周采购的直流电源（可调电压）到了，焊接好后可以调试电机和电机驱动
+
 <details>
   <summary>Click to view the image</summary>
   <img src="https://github.com/0kitasan/demo/assets/62045828/c5c39678-342f-4833-b646-81274dc1fdb6" alt="Demo Image" width="400">
