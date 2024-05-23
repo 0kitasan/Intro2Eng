@@ -1,4 +1,4 @@
-#include "libSonar.h"
+#include "libMotor.h"
 #include <iostream>
 #include <wiringPi.h>
 
@@ -12,12 +12,11 @@ int main() {
     cout << "error" << endl;
     return -1;
   }
-
-  Sonar sonar;
-  sonar.init(pin1, pin2);
+  Motor motor(pin1, pin2, 0);
 
   while (1) {
-    cout << "Distance is " << sonar.distance(30000) << " cm." << endl;
+    motor.run();
+    cout << "running" << endl;
   }
   return 0;
 }
