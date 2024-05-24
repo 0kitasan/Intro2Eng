@@ -73,6 +73,52 @@ ffmpeg -i input.mp4 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
 
 这会导致在 `libSonar.cpp`中，找不到 `wiringPi`中的函数的定义。
 
+#### 分模块控制/控制逻辑
+
+由于控制模块全部转为c++（超声波必须c++，不然会出问题）
+
+注意，pwm控制需要改一下引脚设置，具体见源码，这里后面再具体补
+
+下面是最后的main函数设想：
+
+``` c++
+Sonar sonar(sonar_pin);
+Motor motor(motor_pin);
+Servo servo(servo_pin);
+FaceDetector fd(cam_index);
+
+int main(){
+    while(1){
+        fd.cap_frame();
+        fd.process_frame();
+        switch (fd.response()){
+            case RIGHT：
+                motor.turn_left();
+                break;
+            case LEFT：
+                motor.turn_right();
+                break
+            case UP：
+                servo.down();
+                break;
+            case DOWN：
+                servo.up();
+                break;
+            case MIDDLE:
+                break;
+            default:
+                break;
+        }
+        if(sonar.distance()>max_threshold){
+            motor.forward();
+        }else if(sonar.distance()<min_threshold){
+            motor.backward();
+        }
+    }
+}
+```
+
+
 #### 参考
 
 超声波测距代码直接参考以下git仓库，虽然库本身也比较简单，还是感谢作者帮我节省了时间：
