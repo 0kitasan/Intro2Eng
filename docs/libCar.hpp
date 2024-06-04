@@ -99,3 +99,32 @@ void Servo::rotate_to_angle(int angle) {
   val = duty_min + angle / 9;
   softPwmWrite(pwm_pin, val);
 }
+
+class Car {
+public:
+  Car(Motor motor12_, Motor motor34_) : motor12(motor12_), motor34(motor34_) {}
+
+  void forward_awhile(int duration) {
+    motor12.run_awhile(duration);
+    motor34.run_awhile(duration);
+  }
+
+  void stop() {
+    motor12.stop();
+    motor34.stop();
+  }
+
+  void turn_left_awhile(int duration) {
+    motor12.run_reverse_awhile(duration);
+    motor34.run_awhile(duration);
+  }
+
+  void turn_right_awhile(int duration) {
+    motor12.run_awhile(duration);
+    motor34.run_reverse_awhile(duration);
+  }
+
+private:
+  Motor motor12;
+  Motor motor34;
+};

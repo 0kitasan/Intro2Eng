@@ -5,10 +5,10 @@
 
 using namespace std;
 
-int pin1 = 2;
-int pin2 = 5;
-int pin3 = 7;
-int pin4 = 8;
+int motor_pin1 = 2;
+int motor_pin2 = 5;
+int motor_pin3 = 7;
+int motor_pin4 = 8;
 
 class Car {
 public:
@@ -45,8 +45,8 @@ int main() {
     cout << "error" << endl;
     return -1;
   }
-  Motor motor12(pin1, pin2);
-  Motor motor34(pin3, pin4);
+  Motor motor12(motor_pin1, motor_pin2);
+  Motor motor34(motor_pin3, motor_pin4);
   Car car(motor12, motor34);
 
   for (int i = 0; i < 3; i++) {

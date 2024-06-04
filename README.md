@@ -92,16 +92,16 @@ int main(){
         fd.cap_frame();
         fd.process_frame();
         switch (fd.response()){
-            case RIGHT：
+            case RIGHT:
                 motor.turn_left();
                 break;
-            case LEFT：
+            case LEFT:
                 motor.turn_right();
                 break
-            case UP：
+            case UP:
                 servo.down();
                 break;
-            case DOWN：
+            case DOWN:
                 servo.up();
                 break;
             case MIDDLE:
