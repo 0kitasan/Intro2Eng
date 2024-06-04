@@ -6,7 +6,7 @@
 
 class Motor {
 public:
-  Motor(int Pin1, int Pin2);
+  Motor(int Pin1_, int Pin2_);
   void run();
   void run_reverse();
   // 需要后台运行，以免阻塞线程
@@ -15,8 +15,7 @@ public:
   void stop();
 
 private:
-  int Pin1;
-  int Pin2;
+  int Pin1, Pin2;
   void run_awhile_thread(int duration_ms);
   void run_reverse_awhile_thread(int duration_ms);
 };
