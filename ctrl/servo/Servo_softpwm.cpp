@@ -1,46 +1,38 @@
-#include <iostream>
+#include <softPwm.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <wiringPi.h>
 
-#define SERVO 2
-#define PERIOD 20.0
+// 参考：https://blog.csdn.net/qq_42417071/article/details/134170202
 
-// 软件模拟PWM
-
-void angle2pwm(int servo_pin, double angle) {
-  // 0:0.5ms
-  // 90:1.5ms
-  // 180:2.5ms
-  double time = 0.5 + angle / 90;
-  digitalWrite(servo_pin, HIGH);
-  delay(time);
-  digitalWrite(servo_pin, LOW);
-  delay(PERIOD - time);
-  digitalWrite(servo_pin, HIGH);
-  delay(time);
-  digitalWrite(servo_pin, LOW);
-  delay(PERIOD - time);
-  delay(5 * PERIOD);
-  std::cout << "angle=" << angle << std::endl;
-}
+#define PWM_PIN 2       // 设置输出 PWM 引脚为 wiP 2
+#define PWM_CYCLE 200   // 设置 PMW 的周期为 20ms
+#define PWM_DUTY_MAX 25 // 设置最大脉宽为 2.5ms，即占空比为 12.5%
+#define PWM_DUTY_MIN 5  // 设置最小脉宽为 0.5ms，即占空比为 2.5%
 
 int main(void) {
-  wiringPiSetup();        // wiringOP 库初始化。
-  pinMode(SERVO, OUTPUT); // 把引脚设置为输出模式。
-  digitalWrite(SERVO, HIGH);
-  delay(1);
-  digitalWrite(SERVO, LOW);
-  delay(19);
-  delay(19);
-  delay(1000);
-  angle2pwm(SERVO, 180);
-  delay(1000);
-  angle2pwm(SERVO, 90);
-  delay(1000);
-  angle2pwm(SERVO, 0);
-  delay(1000);
-  for (int angle = 0; angle < 180; angle += 5) {
-    angle2pwm(SERVO, angle);
+  if (wiringPiSetup() == -1)
+    exit(1);
+
+  softPwmCreate(PWM_PIN, PWM_DUTY_MAX, PWM_CYCLE); // 初始化 PWM 输出引脚
+
+  int val = PWM_DUTY_MAX; // 脉冲宽度变化量
+  int mark = 0;           // 转向标志
+
+  while (1) {
+    if (mark == 0)
+      val--;
+    else
+      val++;
+
+    if (val <= PWM_DUTY_MIN)
+      mark = 1;
+    if (val >= PWM_DUTY_MAX)
+      mark = 0;
+
+    softPwmWrite(PWM_PIN, val);
     delay(100);
   }
+
   return 0;
 }

@@ -81,7 +81,7 @@ ffmpeg -i input.mp4 -c:v libx264 -crf 23 -c:a aac -strict -2 output.mp4
 
 下面是最后的main函数设想：
 
-``` c++
+```c++
 Sonar sonar(sonar_pin);
 Motor motor(motor_pin);
 Servo servo(servo_pin);
@@ -118,7 +118,6 @@ int main(){
 }
 ```
 
-
 #### 参考
 
 超声波测距代码直接参考以下git仓库，虽然库本身也比较简单，还是感谢作者帮我节省了时间：
@@ -135,3 +134,4 @@ https://github.com/omaraflak/HC-SR04-Raspberry-Pi-C-
 | 5/14 | 调整了demo视频的分辨率，否则项目仓库过大；<br />由于.git占了近300MB，于是新开了一个仓库；<br />web_debugger初步构建完成                                                                                                                           |
 | 5/15 | 使用ffmpeg修正了demo视频无法播放和文件过大的问题；<br />经测试，由于在小电脑上延迟过大，可能需要将人脸识别模块改写为c++                                                                                                                           |
 | 5/22 | 优化了视觉部分的架构，从config.py到config.yaml；<br />进一步测试了延迟，发现主要是网页端的延迟而不是人脸识别本身；<br />还需要单独测试motor和servo模块(c++)；<br />又由于人脸识别本来也写了c++的版本，<br />因此，目前在考虑要不要全部都换成c++。 |
+| 6/3  | 测试并完善了motor与servo的代码                                                                                                                                                                                                                    |
