@@ -13,23 +13,73 @@ Car::Car(int Motor1Pin1_, int Motor1Pin2_, int Motor2Pin1_, int Motor2Pin2_)
   delay(200);
 }
 
-void Car::run(bool direction, int duration) {
+void Car::test_motor1_dir() {
+  digitalWrite(Motor1Pin1, HIGH);
+  digitalWrite(Motor1Pin2, LOW);
+  delay(200);
+  stop();
+}
+
+void Car::test_motor2_dir() {
+  digitalWrite(Motor2Pin1, HIGH);
+  digitalWrite(Motor2Pin2, LOW);
+  delay(200);
+  stop();
+}
+
+void Car::motor1_run(bool isForward) {
+  if (isForward) {
+    if (motor1_dir) {
+      digitalWrite(Motor1Pin1, HIGH);
+      digitalWrite(Motor1Pin2, LOW);
+    } else {
+      digitalWrite(Motor1Pin1, LOW);
+      digitalWrite(Motor1Pin2, HIGH);
+    }
+  } else {
+    if (!motor1_dir) {
+      digitalWrite(Motor1Pin1, HIGH);
+      digitalWrite(Motor1Pin2, LOW);
+    } else {
+      digitalWrite(Motor1Pin1, LOW);
+      digitalWrite(Motor1Pin2, HIGH);
+    }
+  }
+}
+
+void Car::motor2_run(bool isForward) {
+  if (isForward) {
+    if (motor2_dir) {
+      digitalWrite(Motor2Pin1, HIGH);
+      digitalWrite(Motor2Pin2, LOW);
+    } else {
+      digitalWrite(Motor2Pin1, LOW);
+      digitalWrite(Motor2Pin2, HIGH);
+    }
+  } else {
+    if (!motor2_dir) {
+      digitalWrite(Motor2Pin1, HIGH);
+      digitalWrite(Motor2Pin2, LOW);
+    } else {
+      digitalWrite(Motor2Pin1, LOW);
+      digitalWrite(Motor2Pin2, HIGH);
+    }
+  }
+}
+
+void Car::run(bool isForward, int duration) {
   delay(10);
-  if (direction) {
+  if (isForward) {
     // Motor1正转
-    digitalWrite(Motor1Pin1, HIGH);
-    digitalWrite(Motor1Pin2, LOW);
+    motor1_run(1);
     // Motor2正转
-    digitalWrite(Motor2Pin1, HIGH);
-    digitalWrite(Motor2Pin2, LOW);
+    motor2_run(1);
     delay(duration);
   } else {
     // Motor1反转
-    digitalWrite(Motor1Pin2, HIGH);
-    digitalWrite(Motor1Pin1, LOW);
+    motor1_run(0);
     // Motor2反转
-    digitalWrite(Motor2Pin2, HIGH);
-    digitalWrite(Motor2Pin1, LOW);
+    motor2_run(0);
     delay(duration);
   }
   stop();
@@ -44,27 +94,23 @@ void Car::stop() {
 
 void Car::turn_left(int duration) {
   // Motor1反转
-  digitalWrite(Motor1Pin2, HIGH);
-  digitalWrite(Motor1Pin1, LOW);
+  motor1_run(0);
   // Motor2正转
-  digitalWrite(Motor2Pin1, HIGH);
-  digitalWrite(Motor2Pin2, LOW);
+  motor2_run(1);
   delay(duration);
   stop();
 }
 
 void Car::turn_right(int duration) {
   // Motor1正转
-  digitalWrite(Motor1Pin1, HIGH);
-  digitalWrite(Motor1Pin2, LOW);
+  motor1_run(1);
   // Motor2反转
-  digitalWrite(Motor2Pin2, HIGH);
-  digitalWrite(Motor2Pin1, LOW);
+  motor1_run(0);
   delay(duration);
   stop();
 }
 
-void Car::~Car() {
+Car::~Car() {
   std::cout << "destructor called, car stopped..." << std::endl;
   stop();
 }

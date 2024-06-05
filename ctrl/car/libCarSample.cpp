@@ -24,19 +24,19 @@ int main() {
   for (int i = 0; i < 3; i++) {
     car.run(1, duration_time);
     cout << "running" << endl;
-    // std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+    std::this_thread::sleep_for(std::chrono::milliseconds(delay));
   }
 
   for (int i = 0; i < 3; i++) {
     car.turn_left(duration_time);
     cout << "turn left" << endl;
-    // std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+    std::this_thread::sleep_for(std::chrono::milliseconds(delay));
   }
 
   for (int i = 0; i < 3; i++) {
     car.turn_right(duration_time);
     cout << "turn right" << endl;
-    // std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+    std::this_thread::sleep_for(std::chrono::milliseconds(delay));
   }
 
   return 0;
