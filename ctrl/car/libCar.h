@@ -7,6 +7,7 @@
 class Car {
 public:
   Car(int Motor1Pin1_, int Motor1Pin2_, int Motor2Pin1_, int Motor2Pin2_);
+  ~Car();
   void run(bool direction, int duration);
   void stop();
   void turn_left(int duration);

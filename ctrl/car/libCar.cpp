@@ -63,3 +63,8 @@ void Car::turn_right(int duration) {
   delay(duration);
   stop();
 }
+
+void Car::~Car() {
+  std::cout << "destructor called, car stopped..." << std::endl;
+  stop();
+}
