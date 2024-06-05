@@ -110,7 +110,7 @@ void Car::turn_right(int duration) {
   // Motor1正转
   motor1_run(1);
   // Motor2反转
-  motor1_run(0);
+  motor2_run(0);
   delay(duration);
   stop();
 }
