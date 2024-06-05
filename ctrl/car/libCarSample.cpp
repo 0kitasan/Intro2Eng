@@ -18,6 +18,9 @@ int main() {
   }
 
   Car car(motor_pin1, motor_pin2, motor_pin3, motor_pin4);
+  car.test_motor1_dir();
+  car.test_motor2_dir();
+  car.set_default_dir(1, 1);
 
   int duration_time = 300;
   int delay = 800;

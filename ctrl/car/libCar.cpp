@@ -16,16 +16,21 @@ Car::Car(int Motor1Pin1_, int Motor1Pin2_, int Motor2Pin1_, int Motor2Pin2_)
 void Car::test_motor1_dir() {
   digitalWrite(Motor1Pin1, HIGH);
   digitalWrite(Motor1Pin2, LOW);
-  delay(200);
+  delay(500);
   stop();
 }
 
 void Car::test_motor2_dir() {
   digitalWrite(Motor2Pin1, HIGH);
   digitalWrite(Motor2Pin2, LOW);
-  delay(200);
+  delay(500);
   stop();
 }
+
+void Car::set_default_dir(bool motor1_dir_, bool motor2_dir_) {
+  motor1_dir = motor1_dir_;
+  motor2_dir = motor2_dir_;
+};
 
 void Car::motor1_run(bool isForward) {
   if (isForward) {
